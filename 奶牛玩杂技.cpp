@@ -1,25 +1,31 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-const int N = 5e4 + 10;
-struct Cow {
-    long long w, s;
-} a[N];
-
-bool cmp(Cow x, Cow y) {
-    return x.w + x.s < y.w + y.s; 
+const int N=5e4+10;
+typedef long long LL;
+struct ndd {
+    LL w;
+    LL s;
+} arr[N];
+bool cmp(ndd a,ndd b)
+{
+    return a.w+a.s<b.w+b.s; //贪心策略，体重+力量越大，越待在下面
 }
-
-int main() {
+int main()
+{
     int n;
-    cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i].w >> a[i].s;
-    sort(a, a + n, cmp);
-
-    long long ans = LLONG_MIN, weight = 0;
-    for (int i = 0; i < n; i++) {
-        ans = max(ans, weight - a[i].s);
-        weight += a[i].w;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        scanf("%lld %lld",&arr[i].w,&arr[i].s);
     }
-    cout << ans << endl;
+    sort(arr,arr+n,cmp);
+    LL weight=0;
+    LL ans=LLONG_MIN;
+    for(int i=0;i<n;i++)//从上到下遍历，找出答案
+    {
+        ans=max(ans,weight-arr[i].s);
+        weight+=arr[i].w;
+    }
+    cout<<ans<<endl;
     return 0;
 }

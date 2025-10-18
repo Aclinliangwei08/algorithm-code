@@ -1,53 +1,64 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int N=1010;
+struct ndd {
+    int index;
+    int cnt;
+} row[N],col[N];
 int m,n,k,l,d;
-struct nod{
-    int q,score;
-}ax[N],ay[N];
-
-bool cmp(nod a,nod b){
-    if(a.score==b.score) return a.q<b.q;
-    return a.score>b.score;
+// 按cnt从大到小排
+bool cmp1(ndd& x,ndd& y)
+{
+    return x.cnt>y.cnt;
 }
-
-int main(){
+// 按index从小到大排
+bool cmp2(ndd& x,ndd& y)
+{
+    return x.index<y.index;
+}
+int main()
+{
     cin>>m>>n>>k>>l>>d;
-    // 初始化行列
-    for(int i=1;i<m;i++) ax[i].q=i, ax[i].score=0;
-    for(int j=1;j<n;j++) ay[j].q=j, ay[j].score=0;
+    int x,y,p,q;
+    // 初始化
+    for(int i=1;i<=m;i++)
+    {
+        row[i].index=i;
+    }
+    for(int j=1;j<=n;j++){
+        col[j].index=j;
+    }
+    for(int i=1;i<=d;i++)
+    {
+        cin>>x>>y>>p>>q;
 
-    int x1,y1,x2,y2;
-    while(d--){
-        cin>>x1>>y1>>x2>>y2;
-        if(x1!=x2){ // 横向相邻 -> 行之间加分
-            int z=min(x1,x2);
-            ax[z].score++;
-        }else{      // 纵向相邻 -> 列之间加分
-            int z=min(y1,y2);
-            ay[z].score++;
+        if(x==p)
+        {
+            col[min(y,q)].cnt++;
+        }else
+        {
+            row[min(x,p)].cnt++;
         }
     }
 
-    sort(ax+1, ax+m, cmp);
-    sort(ay+1, ay+n, cmp);
+    sort(row+1,row+1+n,cmp1);
+    sort(col+1,col+1+n,cmp1);
 
-    // 取前k行、l列，升序输出
-    vector<int> row, col;
-    for(int i=1;i<=k;i++) row.push_back(ax[i].q);
-    for(int i=1;i<=l;i++) col.push_back(ay[i].q);
+    sort(row+1,row+1+k,cmp2);
+    sort(col+1,col+1+l,cmp2);
 
-    sort(row.begin(),row.end());
-    sort(col.begin(),col.end());
-
-    for(int i=0;i<k;i++){
-        if(i) cout<<" ";
-        cout<<row[i];
+    for(int i=1;i<=k;i++)
+    {
+        if(i!=1)
+        cout<<" ";
+        cout<<row[i].index;
     }
-    cout<<"\n";
-    for(int i=0;i<l;i++){
-        if(i) cout<<" ";
-        cout<<col[i];
+    cout<<endl;
+     for(int i=1;i<=l;i++)
+    {
+        if(i!=1)
+        cout<<" ";
+        cout<<col[i].index;
     }
     return 0;
 }
