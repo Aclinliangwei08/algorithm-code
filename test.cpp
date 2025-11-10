@@ -2,9 +2,6 @@
 using namespace std;
 int main()
 {
-    long long a=-37;
-    long long b=1000000007;
-    long long ans= a%b;
-    cout<<ans<<endl;
+    cout<<"Hello world!"<<endl;
     return 0;
 }

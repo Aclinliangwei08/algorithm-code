@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long LL;
 int n;
-priority_queue<LL,vector<LL>,greater<LL>> heap;//小根堆
+priority_queue<LL ,vector<LL>,greater<LL>> heap;
 int main()
 {
     cin>>n;
@@ -12,17 +12,14 @@ int main()
         cin>>x;
         heap.push(x);
     }
-
-    LL ret=0;
+    LL ret =0 ;
     while(heap.size()>1)
     {
-        LL x =heap.top();
-        heap.pop();
-        LL y = heap.top();
-        heap.pop();
+        LL x=heap.top();heap.pop();
+        LL y=heap.top();heap.pop();
         ret+=x+y;
         heap.push(x+y);
     }
-    cout<<ret<<endl;//输出结果
+    cout<<ret<<endl;    
     return 0;
 }

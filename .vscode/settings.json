@@ -4,5 +4,10 @@
         "cpp": "/opt/homebrew/bin/g++-15 -std=c++17 $fullFileName -o $fileNameWithoutExt && ./$fileNameWithoutExt"
     },
     "code-runner.clearPreviousOutput": true,
-    "code-runner.saveFileBeforeRun": true
+    "code-runner.saveFileBeforeRun": true,
+    "files.associations": {
+        "queue": "cpp",
+        "stack": "cpp",
+        "random": "cpp"
+    }
 }
