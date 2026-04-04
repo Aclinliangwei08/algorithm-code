@@ -4,23 +4,24 @@ typedef long long LL;
 int main()
 {
     int T;
-    cin>>T; 
-    LL t;
+    cin>>T;
+    string s;
     while(T--)
     {
-        LL ans =0;
-        cin>>t;
-        int mi=11;
-        while(t)
+        cin>>s;
+        LL sum=0;
+        bool flag=false;
+        for(auto ch:s)
         {
-            int tmp = t%10;
-            mi=min(mi,tmp);
-            t/=10;
-            ans+=tmp;
+            sum+=ch-'0';
+            if(ch=='0')
+            flag=true;
         }
-         ans=ans+9-mi;
-         cout<<ans<<endl;
+        if(flag){
+            cout<<sum+9<<endl;
+        }else{
+            cout<<sum+8<<endl;
+        }
     }
-   
     return 0;
 }
