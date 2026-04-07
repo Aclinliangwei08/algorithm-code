@@ -4,6 +4,7 @@ int n,m;
 const int N=1e5+10;
 vector<int> edges[N];
 bool st[N];
+
 void dfs(int x)
 {
     st[x]=true;
